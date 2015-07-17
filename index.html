@@ -2,31 +2,47 @@
 <html>
     <head>
         <title>This is a Web App</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        
         <!-- Heading -->
         <h1>Server</h1>
         
         <!-- Chat messages -->
         <div>
-            <span>Alice:</span>
-            <span>Hello, how are you?</span>
+            <div class="bubble left">
+                <h4>Alice:</h4>
+                <div>Hello, how are you?</div>
+            </div>
         </div>
         <div>
-            <span>Bob:</span>
-            <span>I am fine, how are you?</span>
+            <div class="bubble right">
+                <h4>Bob:</h4>
+                <div>I am fine, how are you?</div>
+            </div>
         </div>
         <div>
-            <span>Alice:</span>
-            <span>Never been better</span>
+            <div class="bubble left">
+                <h4>Alice:</h4>
+                <div>Never been better</div>
+            </div>
         </div>
-        <br>
+        
+        
         <!-- Input Form -->
-        <form>
-        Enter a message:<br>
-        <input type="text" name="message" value="Message">
-        <br>
-        <input type="submit" value="Submit">
-        </form>
+        <div class="bubble left">
+            <form>
+            <h2>Enter a message: </h2>
+            <div class="input-group">
+                <input class="form-control" type="text" name="message" placeholder="Message">
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-success" type="button">Submit</button>
+                </span>
+            </div>
+            </form>
+        </div>    
+        
     </body>
 </html>
