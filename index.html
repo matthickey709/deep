@@ -4,10 +4,13 @@
         <title>This is a Web App</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="style.css" rel="stylesheet" type="text/css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
         <script src="app.js"></script>
     </head>
-    <body>
+    <body ng-app="myMessenger" ng-controller="myController">
         
+        {{hello}}
+
         <!-- Heading -->
         <h1>Server</h1>
         
