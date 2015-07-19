@@ -22,12 +22,12 @@
         
         <!-- Input Form -->
         <div class="bubble left">
-            <form>
             <h2>Enter a message: </h2>
+            <form ng-submit="add_new_message()">
             <div class="input-group">
-                <input class="form-control" type="text" name="message" placeholder="Message">
+                <input class="form-control" type="text" name="message" placeholder="Message" ng-model="message_body">
                 <span class="input-group-btn">
-                    <button class="btn btn-default btn-success" type="button">Submit</button>
+                    <input class="btn btn-default btn-success" type="submit" >
                 </span>
             </div>
             </form>
