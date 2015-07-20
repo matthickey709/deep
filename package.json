@@ -1,0 +1,10 @@
+{
+    "version":"0.0.0",
+    "name":"chatapp",
+    "description":"A chat app for the DEEP course on building massively scalable web apps",
+    "dependencies":{
+        "express":"~4.9.0",
+        "body-parser":"*",
+        "method-override": "*"
+     }
+}
