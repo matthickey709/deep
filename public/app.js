@@ -6,15 +6,25 @@ app.config(function($stateProvider, $urlRouterProvider){
         url:'/chat',
         templateUrl:'views/chat.html',
         controller:'chatCtrl'
+    })
+    .state('login',{
+        url:'/login',
+        templateUrl:'views/login.html',
+        controller:'loginCtrl'
     });
 
-    $urlRouterProvider.otherwise('/chat');
+    $urlRouterProvider.otherwise('/login');
 
 });
 
 app.controller('chatCtrl',
-    function($scope){
+    function($scope, $rootScope, $location){
     
+    if(!$rootScope.username){
+        //If not logged in- redirect to login page
+        $location.url('/login'); 
+     }
+
     //Array of all messages
     $scope.messages = [
       {sender: 'Alice', body:'Hello, how are you?', side:'left'},
@@ -33,6 +43,14 @@ app.controller('chatCtrl',
         //Clear existing message
         $scope.new_message = null;
     }
+}).controller('loginCtrl', 
+    function($scope, $rootScope, $location){
+       
+       $scope.login = function(){
+            $rootScope.username = $scope.username;
+            $location.url('/chat');
+       }
+
 });
 
 
