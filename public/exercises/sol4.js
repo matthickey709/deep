@@ -10,6 +10,6 @@ function square(x){
 }
 
 //Get argument
-arg = process.argv[2]
+arg = 92; 
 
 console.log(square(arg));
