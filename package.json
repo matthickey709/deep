@@ -5,6 +5,7 @@
     "dependencies":{
         "express":"~4.9.0",
         "body-parser":"*",
-        "method-override": "*"
+        "method-override": "*",
+        "socket.io": "*"
      }
 }
