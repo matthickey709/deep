@@ -6,3 +6,7 @@ and Node) stack.
 
 The walkthrough can be found here: 
 https://docs.google.com/document/d/1l9RHPp5NGEtmTcPzzl01GGxRl93FJLvSeLeF_lpQvRk
+
+Lecture Slides:
+    Lecture 5: JavaScript: https://docs.google.com/presentation/d/1I36bdlbrp90dL3Zr0Zt2IWRLo0n1ly1Y7gx0Dm2MYVw/edit?usp=sharing
+    Lecture 6: DOM: https://docs.google.com/presentation/d/14zTf7V3JYvmL3dw9PTjMBuRwlWQLL5yiYggdWipDDGQ/edit?usp=sharing
