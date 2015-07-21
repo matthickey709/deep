@@ -11,8 +11,8 @@
 
 //Insert code here
 
-arr = JSON.parse(process.argv[2]);
-sub = JSON.parse(process.argv[3]);
+arr = ['a','b','c','a','d','a'];
+sub = ['a','d','a'];
 
 var answer = -1
 
