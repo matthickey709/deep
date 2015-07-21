@@ -3,8 +3,8 @@
 
 <!-- Chat messages -->
 <div ng-repeat="message in messages">
-    <div class="bubble" ng-class="message.side">
-        <h4>{{message.sender}}:</h4>
+    <div class="bubble" ng-class="$even ? 'left' : 'right'" >
+        <h4>{{message.username}}:</h4>
         <div>{{message.body}}</div>
     </div>
 </div>

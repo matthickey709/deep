@@ -25,24 +25,39 @@ app.controller('chatCtrl',
         $location.url('/login'); 
      }
 
+     var socket = io();
+     socket.emit('add user', $rootScope.username);
+
     //Array of all messages
-    $scope.messages = [
-      {sender: 'Alice', body:'Hello, how are you?', side:'left'},
-      {sender: 'Bob', body:'I am fine, how are you?', side: 'right'},
-      {sender: 'Alice', body:'Never been better', side: 'left'}
-    ];
+    $scope.messages = [];
     
     //Function to add new messages
     $scope.add_new_message = function(){
         //Add new message to list of existing messages
         $scope.messages.push({
-                sender: 'Bob',
-                body: $scope.message_body,
-                side:'right'
+                username: $rootScope.username,
+                body: $scope.message_body
             });
+        
+        //Send message to server
+        socket.emit('new message', $scope.message_body);
+        
         //Clear existing message
-        $scope.new_message = null;
+        $scope.message_body = null;
     }
+
+    //When a new user logs in
+    socket.on('add user', function(data){
+           console.log(data);
+    });
+
+    //When new message received
+    socket.on('new message', function(data){
+        console.log(data);
+        $scope.messages.push(data);
+        $scope.$apply();
+    });
+
 }).controller('loginCtrl', 
     function($scope, $rootScope, $location){
        
