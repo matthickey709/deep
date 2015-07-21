@@ -19,7 +19,7 @@ app.controller('myController',
                 side:'right'
             });
         //Clear existing message
-        $scope.new_message = null;
+        $scope.message_body = null;
     }
 });
 
