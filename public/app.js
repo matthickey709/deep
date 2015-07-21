@@ -1,6 +1,18 @@
-var app = angular.module('myMessenger', []);
+var app = angular.module('myMessenger', ['ui.router']);
 
-app.controller('myController',
+app.config(function($stateProvider, $urlRouterProvider){
+    $stateProvider
+    .state('chat',{
+        url:'/chat',
+        templateUrl:'views/chat.html',
+        controller:'chatCtrl'
+    });
+
+    $urlRouterProvider.otherwise('/chat');
+
+});
+
+app.controller('chatCtrl',
     function($scope){
     
     //Array of all messages

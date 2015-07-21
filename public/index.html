@@ -5,33 +5,10 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="style.css" rel="stylesheet" type="text/css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
         <script src="app.js"></script>
     </head>
-    <body ng-app="myMessenger" ng-controller="myController">
-        
-        <!-- Heading -->
-        <h1>Server</h1>
-        
-        <!-- Chat messages -->
-        <div ng-repeat="message in messages">
-            <div class="bubble" ng-class="message.side">
-                <h4>{{message.sender}}:</h4>
-                <div>{{message.body}}</div>
-            </div>
-        </div>
-        
-        <!-- Input Form -->
-        <div class="bubble left">
-            <h2>Enter a message: </h2>
-            <form ng-submit="add_new_message()">
-            <div class="input-group">
-                <input class="form-control" type="text" name="message" placeholder="Message" ng-model="message_body">
-                <span class="input-group-btn">
-                    <input class="btn btn-default btn-success" type="submit" >
-                </span>
-            </div>
-            </form>
-        </div>    
-        
+    <body ng-app="myMessenger">
+        <ui-view></ui-view>     
     </body>
 </html>
