@@ -7,11 +7,10 @@ app.config(function($stateProvider, $urlRouterProvider){
         templateUrl:'views/chat.html',
         controller:'chatCtrl'
     })
-    .state('login',{
-        url:'/login',
-        templateUrl:'views/login.html',
-        controller:'loginCtrl'
-    });
+    .state('login',
+        //Add new state here
+
+    );
 
     $urlRouterProvider.otherwise('/login');
 
