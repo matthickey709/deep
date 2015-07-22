@@ -6,6 +6,7 @@
         "express":"~4.9.0",
         "body-parser":"*",
         "method-override": "*",
-        "socket.io": "*"
+        "socket.io": "*",
+        "socket.io-client":"*"
      }
 }
