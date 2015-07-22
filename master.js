@@ -15,7 +15,7 @@ io.on('connection', function(socket){
             {username: username});
       });
       socket.on('new message', function(data){
-          console.log("New message: " data.username + " sent " + data.body);
+          console.log("New message: " + data.username + " sent " + data.body);
           socket.broadcast.emit('new message', data);
       });
 

@@ -46,6 +46,14 @@ app.controller('chatCtrl',
         $scope.message_body = null;
     }
 
+    socket.on('welcome', function(data){
+        console.log(data.messages);    
+        for(var i=data.messages.length-1; i>=0; i--){
+            $scope.messages.push(data.messages[i]);    
+        }
+        $scope.$apply();
+    });
+    
     //When a new user logs in
     socket.on('add user', function(data){
            console.log(data);

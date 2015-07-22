@@ -1,5 +1,5 @@
 /******** Constants ************/
-var MASTER_URL= MASTER_IP ? "http://" + MASTER_IP + ":8000" : "http://localhost:8000";
+var MASTER_URL= process.env.MASTER_IP ? "http://" + process.env.MASTER_IP + ":8000" : "http://localhost:8000";
 
 /******** Dependencies ************/
 var express = require('express');
@@ -9,6 +9,7 @@ var methodOverride = require('method-override');
 var http = require('http');
 var socketIo = require('socket.io');
 var socketIoClient = require('socket.io-client');
+var mongoose = require('mongoose');
 
 /******** Configuration  **********/
 var app = express();
@@ -27,6 +28,10 @@ var port = process.env.PORT || 3000;
 
 var master = socketIoClient(MASTER_URL);
 
+/******** Database Configuration  **********/
+require('./models/message')
+var Message = mongoose.model('Message');
+mongoose.connect('mongodb://localhost/deep')
 /******** Run Server **********/
 
 server.listen(port, function () {
@@ -42,18 +47,34 @@ io.on('connection', function (socket) {
 
     // when the client emits 'new message', this listens and executes
     socket.on('new message', function (data) {
-        //Relay the new message to the master
-        master.emit('new message', {
+        var msg = {
                 username: socket.username,
                 body: data
-            });
+            };
+        
+        //Save in database
+        console.log("saving " + data);
+        var message = new Message(msg);
+        message.save();
+
+        //Relay the new message to the master
+        master.emit('new message', msg);
     });
 
     // when the client emits 'add user', this listens and executes
     socket.on('add user', function (username) {
         // we store the username in the socket session for this client
         socket.username = username;
-        //Relay the add server to the master
+
+        //Reply to new user- return upto 10 most recent messages
+        Message.find({}, {body: true, username: true})
+            .sort({_id:-1}).limit(10)
+            .exec(function(err, messageList){
+                    if(!err)
+                        socket.emit('welcome', {messages: messageList});
+                });
+
+        //Relay the 'add user' event to the master
         master.emit('add user', username);
     });
 });
@@ -66,6 +87,10 @@ master.on('add user', function(data){
 });
 
 master.on('new message', function(data){
+    //Save message in the database
+    var message = new Message(data);
+    message.save();
+    
     console.log("Received 'new message' from master: " + data.username + ": " + data.body);
     //broadcast 'new message' event to all clients 
     io.sockets.emit('new message', data);
