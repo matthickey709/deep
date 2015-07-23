@@ -40,8 +40,8 @@ app.controller('chatCtrl',
             });
         
         //Send message to server
-        socket.emit('new message', $scope.message_body);
-        
+        //Insert code here
+
         //Clear existing message
         $scope.message_body = null;
     }
@@ -51,12 +51,9 @@ app.controller('chatCtrl',
            console.log(data);
     });
 
-    //When new message received
-    socket.on('new message', function(data){
-        console.log(data);
-        $scope.messages.push(data);
-        $scope.$apply();
-    });
+    //handle event where 'new message' event received
+    //i.e. socket.on('new message' ...
+    //Insert code here
 
 }).controller('loginCtrl', 
     function($scope, $rootScope, $location){

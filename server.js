@@ -34,14 +34,9 @@ server.listen(port, function () {
 //Chat room
 io.on('connection', function (socket) {
 
-    // when the client emits 'new message', this listens and executes
-    socket.on('new message', function (data) {
-        // we tell the client to execute 'new message'
-        socket.broadcast.emit('new message', {
-            username: socket.username,
-            body: data
-        });
-    });
+    //Add event for when 'new message' received
+    //Similar to 'add user' event
+    //Insert code here
 
     // when the client emits 'add user', this listens and executes
     socket.on('add user', function (username) {
