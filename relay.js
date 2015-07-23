@@ -52,11 +52,6 @@ io.on('connection', function (socket) {
                 body: data
             };
         
-        //Save in database
-        console.log("saving " + data);
-        var message = new Message(msg);
-        message.save();
-
         //Relay the new message to the master
         master.emit('new message', msg);
     });
@@ -65,14 +60,6 @@ io.on('connection', function (socket) {
     socket.on('add user', function (username) {
         // we store the username in the socket session for this client
         socket.username = username;
-
-        //Reply to new user- return upto 10 most recent messages
-        Message.find({}, {body: true, username: true})
-            .sort({_id:-1}).limit(10)
-            .exec(function(err, messageList){
-                    if(!err)
-                        socket.emit('welcome', {messages: messageList});
-                });
 
         //Relay the 'add user' event to the master
         master.emit('add user', username);
@@ -87,9 +74,6 @@ master.on('add user', function(data){
 });
 
 master.on('new message', function(data){
-    //Save message in the database
-    var message = new Message(data);
-    message.save();
     
     console.log("Received 'new message' from master: " + data.username + ": " + data.body);
     //broadcast 'new message' event to all clients 
