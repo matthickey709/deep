@@ -53,9 +53,7 @@ io.on('connection', function (socket) {
             };
         
         //Save in database
-        console.log("saving " + data);
-        var message = new Message(msg);
-        message.save();
+        //Insert code here
 
         //Relay the new message to the master
         master.emit('new message', msg);
@@ -88,9 +86,8 @@ master.on('add user', function(data){
 
 master.on('new message', function(data){
     //Save message in the database
-    var message = new Message(data);
-    message.save();
-    
+    //Insert code here
+
     console.log("Received 'new message' from master: " + data.username + ": " + data.body);
     //broadcast 'new message' event to all clients 
     io.sockets.emit('new message', data);
