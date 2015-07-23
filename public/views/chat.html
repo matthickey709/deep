@@ -1,6 +1,17 @@
 <!-- Heading -->
 <h1>Hello {{$root.username}}</h1>
 
+
+<div class="bubble">
+    <h3 class="text-center">Notification</h3>
+    {{notification}}
+    <h3 class="text-center">Active Users</h3>
+    <span ng-repeat="(user, _) in users">
+        {{user}},
+    </span>
+</div>
+
+
 <!-- Chat messages -->
 <div ng-repeat="message in messages">
     <div class="bubble" ng-class="$even ? 'left' : 'right'" >

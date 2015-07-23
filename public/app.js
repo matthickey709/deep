@@ -35,9 +35,11 @@ app.controller('chatCtrl',
 
     //Array of all messages
     $scope.messages = [];
-    //Array of all users
+    //map of all users
     $scope.users = {}; 
-
+    //Notification message
+    $scope.notification = "...";
+    
     //Function to add new messages
     $scope.add_new_message = function(){
         //Add new message to list of existing messages
@@ -59,6 +61,7 @@ app.controller('chatCtrl',
         for(var i=data.messages.length-1; i>=0; i--){
             $scope.messages.push(data.messages[i]);    
         }
+        $scope.users = data.userlist;
         $scope.$apply();
     });
     
@@ -68,18 +71,23 @@ app.controller('chatCtrl',
            if(data.username){
                $scope.users[data.username] = data.username;
            }
+           $scope.notification = data.username + " joined."
+           $scope.$apply();
     });
 
     //When new message received
     socket.on('new message', function(data){
         console.log('new message: ' + data.body + " from " + data.username);
         $scope.messages.push(data);
+        $scope.notification = data.username + " posted a new message."
         $scope.$apply();
     });
 
     socket.on('remove user', function(data){
         console.log('remove user: ' + data.username);
         delete $scope.users[data.username]
+        $scope.notification = data.username + " left."
+        $scope.$apply();
     });
 
     //If we received a bye, goto login page
