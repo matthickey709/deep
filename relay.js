@@ -1,6 +1,6 @@
 /******** Constants ************/
-var MASTER_URL= MASTER_IP ? "http://" + MASTER_IP + ":8000" : "http://localhost:8000";
-
+var MASTER_URL= process.env.MASTER_IP ? "http://" + process.env.MASTER_IP + ":8000" : "http://localhost:8000";
+console.log(MASTER_URL);
 /******** Dependencies ************/
 var express = require('express');
 var bodyParser = require('body-parser');
