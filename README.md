@@ -33,4 +33,11 @@ https://docs.google.com/presentation/d/1JE3DAptHaF4JwJZLuNerCURH4D-gcjzQfbpiUlIe
 https://docs.google.com/presentation/d/16DMKrxCzcB2t6PnQiwNvi40mSs1XZmsKJJ4X6AW4Vgs/edit?usp=sharing
 ###Lecture 10 Extending our App
 https://docs.google.com/presentation/d/1hkw5wLu9GNAsGT1zy_4RMG7BDwx36hPXgRmt9BxT8Lk/edit?usp=sharing
-
+###Lecture 11 
+https://docs.google.com/presentation/d/1P-0upIR8fjN3sQ7RPk3QnwzTQFrTiKc9BeiiPqbiPU8/edit?usp=sharing
+###Lecture 12 Relay Server
+https://docs.google.com/presentation/d/1NM1AVKsXTYkjx-J4T5K7lM_ITmWRQaS_iXhmJGbDTTw/edit?usp=sharing
+###Lecture 13 Database
+https://docs.google.com/presentation/d/1i-TTqsy_96VnQBpkXYS0ZKga02B9TCkFr8cBerYgr_w/edit?usp=sharing
+###Lecture 14 Notifications
+https://docs.google.com/presentation/d/18ConsZs15Heo28MWsdmL38R42Gnz_jUe8hespkJT4TI/edit?usp=sharing
