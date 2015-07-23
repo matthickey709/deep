@@ -1,5 +1,6 @@
 /******** Constants ************/
-var MASTER_URL= process.env.MASTER_IP ? "http://" + process.env.MASTER_IP + ":8000" : "http://localhost:8000";
+var MASTER_URL= "http://localhost:8000";
+//var MASTER_URL= "http://142.150.208.248:8000";
 
 /******** Dependencies ************/
 var express = require('express');
