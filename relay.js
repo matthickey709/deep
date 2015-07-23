@@ -1,6 +1,6 @@
 /******** Constants ************/
-var MASTER_URL= process.env.MASTER_IP ? "http://" + process.env.MASTER_IP + ":8000" : "http://localhost:8000";
-
+var MASTER_URL= "http://localhost:8000";
+//var MASTER_URL= "http://142.150.208.248:8000";
 /******** Dependencies ************/
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -41,6 +41,8 @@ server.listen(port, function () {
       console.log('Example app listening at http://%s:%s', host, port);
 });
 
+//There should only be one client
+var clientExists = false; 
 
 //Connection with Client
 io.on('connection', function (socket) {
@@ -53,7 +55,6 @@ io.on('connection', function (socket) {
             };
         
         //Save in database
-        console.log("saving " + data);
         var message = new Message(msg);
         message.save();
 
@@ -63,23 +64,39 @@ io.on('connection', function (socket) {
 
     // when the client emits 'add user', this listens and executes
     socket.on('add user', function (username) {
-        // we store the username in the socket session for this client
-        socket.username = username;
+        console.log("Received 'add user' event from client. username is " + username); 
+        //Only allow one client per server
+        if(clientExists){
+            socket.emit('bye', {});
+        }else if(username){
+            socket.username = username;
+            clientExists = true;
+            //Relay the 'add user' event to the master
+            master.emit('add user', username);
+        }
+    });
 
-        //Reply to new user- return upto 10 most recent messages
-        Message.find({}, {body: true, username: true})
-            .sort({_id:-1}).limit(10)
-            .exec(function(err, messageList){
-                    if(!err)
-                        socket.emit('welcome', {messages: messageList});
-                });
-
-        //Relay the 'add user' event to the master
-        master.emit('add user', username);
+    socket.on('disconnect', function(){
+        clientExists = false;
+        console.log("Received 'disconnect' event from client");
+        master.emit('remove user', {username: socket.username});   
     });
 });
 
-//Connection with Master
+
+//Events sent by Master
+master.on('welcome', function(data){
+    console.log("Received 'welcome' from master");
+    Message.find({}, {body: true, username: true})
+        .sort({_id:-1}).limit(10)
+        .exec(function(err, messageList){
+                if(!err)
+                    io.sockets.emit('welcome', 
+                    {messages: messageList, userlist: data.userlist});
+            });
+
+});
+
 master.on('add user', function(data){
     console.log("Received 'add user' from master: " + data.username);
     //broadcast 'add user' event to all clients 
@@ -94,4 +111,8 @@ master.on('new message', function(data){
     console.log("Received 'new message' from master: " + data.username + ": " + data.body);
     //broadcast 'new message' event to all clients 
     io.sockets.emit('new message', data);
+});
+
+master.on('remove user', function(data){
+    io.sockets.emit('remove user', data);
 });

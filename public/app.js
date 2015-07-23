@@ -11,6 +11,11 @@ app.config(function($stateProvider, $urlRouterProvider){
         url:'/login',
         templateUrl:'views/login.html',
         controller:'loginCtrl'
+    })
+    .state('users',{
+        url:'/users',
+        templateUrl:'views/users.html',
+        controller:'userCtrl'
     });
 
     $urlRouterProvider.otherwise('/login');
@@ -18,11 +23,11 @@ app.config(function($stateProvider, $urlRouterProvider){
 });
 
 app.controller('chatCtrl',
-    function($scope, $rootScope, $location){
+    function($scope, $rootScope, $state){
     
     if(!$rootScope.username){
         //If not logged in- redirect to login page
-        $location.url('/login'); 
+        $state.go('login'); 
      }
 
      var socket = io();
@@ -30,7 +35,9 @@ app.controller('chatCtrl',
 
     //Array of all messages
     $scope.messages = [];
-    
+    //Array of all users
+    $scope.users = {}; 
+
     //Function to add new messages
     $scope.add_new_message = function(){
         //Add new message to list of existing messages
@@ -47,7 +54,8 @@ app.controller('chatCtrl',
     }
 
     socket.on('welcome', function(data){
-        console.log(data.messages);    
+        console.log("Received 'welcome' event");
+        console.log(data);    
         for(var i=data.messages.length-1; i>=0; i--){
             $scope.messages.push(data.messages[i]);    
         }
@@ -56,24 +64,37 @@ app.controller('chatCtrl',
     
     //When a new user logs in
     socket.on('add user', function(data){
-           console.log(data);
+           console.log('add user: ' + data.username);
+           if(data.username){
+               $scope.users[data.username] = data.username;
+           }
     });
 
     //When new message received
     socket.on('new message', function(data){
-        console.log(data);
+        console.log('new message: ' + data.body + " from " + data.username);
         $scope.messages.push(data);
         $scope.$apply();
     });
 
+    socket.on('remove user', function(data){
+        console.log('remove user: ' + data.username);
+        delete $scope.users[data.username]
+    });
+
+    //If we received a bye, goto login page
+    socket.on('bye', function(data){
+        console.log('client already connected');
+        $state.go('login');
+    });
+
 }).controller('loginCtrl', 
-    function($scope, $rootScope, $location){
+    function($scope, $rootScope, $state){
        
        $scope.login = function(){
             $rootScope.username = $scope.username;
-            $location.url('/chat');
+            $state.go('chat');
        }
-
 });
 
 
