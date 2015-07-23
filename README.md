@@ -43,3 +43,7 @@ https://docs.google.com/presentation/d/1NM1AVKsXTYkjx-J4T5K7lM_ITmWRQaS_iXhmJGbD
 https://docs.google.com/presentation/d/1i-TTqsy_96VnQBpkXYS0ZKga02B9TCkFr8cBerYgr_w/edit?usp=sharing
 ###Lecture 14 Notifications
 https://docs.google.com/presentation/d/18ConsZs15Heo28MWsdmL38R42Gnz_jUe8hespkJT4TI/edit?usp=sharing
+###Lecture 15 What We Learned
+https://docs.google.com/presentation/d/1q1ygCZQigai_OH0Lq7R7AZIP0V-m5BL8ChJc2l6kujw/edit?usp=sharing
+###Lecture 16 Project
+https://docs.google.com/presentation/d/1wzaA-IOdP-mWeXxOSGgcoApkL8Z56mlAcdrwP08Hl9s/edit?usp=sharing
