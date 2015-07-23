@@ -23,17 +23,19 @@ https://docs.google.com/presentation/d/1iyfjFHefs4uIUGE-MIEs47dkN3F8fD6wh3FQ-JCK
 https://docs.google.com/presentation/d/1Dfl0zYbjg8hWhUDfK4t6CAW24zt7R6zvWoXdFhcc6m4/edit?usp=sharing
 ###Lecture 5: JavaScript 2
 https://docs.google.com/presentation/d/1I36bdlbrp90dL3Zr0Zt2IWRLo0n1ly1Y7gx0Dm2MYVw/edit?usp=sharing
-###Lecture 6 DOM
+###Lecture 6: DOM
 https://docs.google.com/presentation/d/14zTf7V3JYvmL3dw9PTjMBuRwlWQLL5yiYggdWipDDGQ/edit?usp=sharing
-###Lecture 7 Angular 
+###Lecture 7: Angular 
 https://docs.google.com/presentation/d/16CW5aBWAjDHhWbO6h33IXPuUEAw08Ry8DuIk_4gBo5s/edit?usp=sharing
-###Lecture 8 Servers
+###Lecture 8: Servers
 https://docs.google.com/presentation/d/1JE3DAptHaF4JwJZLuNerCURH4D-gcjzQfbpiUlIeWdA/edit?usp=sharing
-###Lecture 9 Servers 2
+###Lecture 9: Servers 2
 https://docs.google.com/presentation/d/16DMKrxCzcB2t6PnQiwNvi40mSs1XZmsKJJ4X6AW4Vgs/edit?usp=sharing
-###Lecture 10 Extending our App
+###Lecture 10: Extending our App
 https://docs.google.com/presentation/d/1hkw5wLu9GNAsGT1zy_4RMG7BDwx36hPXgRmt9BxT8Lk/edit?usp=sharing
-###Lecture 11 
+###Lecture: 10.5 The Big Picture
+https://docs.google.com/presentation/d/1xif1HkBzDhimQ2rKCz57bwMg3wGX6nVVUOTihHZpFcw/edit?usp=sharing
+###Lecture 11 WebSockets
 https://docs.google.com/presentation/d/1P-0upIR8fjN3sQ7RPk3QnwzTQFrTiKc9BeiiPqbiPU8/edit?usp=sharing
 ###Lecture 12 Relay Server
 https://docs.google.com/presentation/d/1NM1AVKsXTYkjx-J4T5K7lM_ITmWRQaS_iXhmJGbDTTw/edit?usp=sharing
