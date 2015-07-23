@@ -54,7 +54,7 @@ app.controller('chatCtrl',
     //When new message received
     socket.on('new message', function(data){
         console.log(data);
-        $scope.messages.push(data);
+        //Insert code here
         $scope.$apply();
     });
 
