@@ -5,6 +5,7 @@ var path = require('path');
 var methodOverride = require('method-override');
 var http = require('http');
 var socketIo = require('socket.io');
+var mongoose = require('mongoose');
 
 /******** Configuration  **********/
 var app = express();
@@ -20,6 +21,11 @@ var server = http.createServer(app);
 var io = socketIo(server);
 
 var port = process.env.PORT || 3000;
+
+/******** Database Configuration  **********/
+require('./models/message')
+var Message = mongoose.model('Message');
+mongoose.connect('mongodb://localhost/deep')
 
 /******** Run Server **********/
 server.listen(port, function () {
@@ -53,8 +59,19 @@ io.on('connection', function (socket) {
                 username: socket.username,
             });
             userlist[username] = username;
+            
+            //Message.find({}, {body: true, username: true})
+            //.sort({_id:-1}).limit(10)
+            //.exec(function(err, messageList){
+            Message.find({})
+            .exec(function(err, messages){
+                    if(!err)
+                        io.sockets.emit('welcome', 
+                        {messages: messages, userlist: userlist});
+                });
+            
             //Reply to the new joiner with the list of users
-            socket.emit('welcome', {userlist:userlist, messages:[]});
+            //socket.emit('welcome', {userlist:userlist, messages:[]});
         }
     });
 
