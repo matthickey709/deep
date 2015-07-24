@@ -66,6 +66,7 @@ io.on('connection', function (socket) {
     socket.on('add user', function (username) {
         console.log("Received 'add user' event from client. username is " + username); 
         //Only allow one client per server
+        
         if(clientExists){
             socket.emit('bye', {});
         }else if(username){
